@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Analytics Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container my-4">
+        <header class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
+            <div>
+                <h2 class="fw-bold text-primary">Expense Tracker Pro</h2>
+                <p class="text-muted mb-0">Track, analyze, and export your budget metrics</p>
+            </div>
+            <button class="btn btn-success" onclick="exportToCSV()">Export CSV</button>
+        </header>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card shadow-sm p-3 border-0">
+                    <h5 class="mb-3">Add Entry</h5>
+                    <form id="expenseForm">
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <input type="text" id="desc" class="form-control" placeholder="e.g. Hosting Fee" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Amount ($)</label>
+                            <input type="number" id="amount" class="form-control" placeholder="e.g. 50" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Category</label>
+                            <select id="category" class="form-select">
+                                <option value="Tech">Tech</option>
+                                <option value="Food">Food</option>
+                                <option value="Utilities">Utilities</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Add Expense</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <div class="card shadow-sm p-3 text-center border-0 bg-light">
+                            <span class="text-muted">Total Spent</span>
+                            <h3 id="totalDisplay" class="fw-bold text-danger">$0.00</h3>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card shadow-sm p-3 text-center border-0 bg-light">
+                            <span class="text-muted">Total Entries</span>
+                            <h3 id="countDisplay" class="fw-bold">0</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm p-3 border-0 mb-4">
+                    <canvas id="expenseChart" height="110"></canvas>
+                </div>
+
+                <div class="card shadow-sm p-3 border-0">
+                    <h5 class="mb-3">Transaction History</h5>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Description</th>
+                                    <th>Category</th>
+                                    <th>Amount</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="expenseList"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
